@@ -1,6 +1,6 @@
 # How Jobs Are Run
 
-Before reading this we recommend diving into [How Jobs Are Constructed](How-Jobs-Are-Constructed).
+Before reading this we recommend diving into [How Jobs Are Constructed](How-Jobs-Are-Constructed.md).
 
 ## Sessions
 
@@ -124,7 +124,7 @@ The format for the path mapping rules is:
 ```
 
 The location of this file, and whether there are path mapping rules defined, are available as value references for
-use in [Format Strings](How-Jobs-Are-Constructed#format-strings) within a Job Template. The value references available are:
+use in [Format Strings](How-Jobs-Are-Constructed.md#format-strings) within a Job Template. The value references available are:
 
 1. `Session.HasPathMappingRules` -- Has the string value `true` or `false`.
     * `true` — means that the path mapping JSON contains path mapping rules.

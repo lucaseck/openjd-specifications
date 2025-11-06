@@ -1,6 +1,6 @@
 # Ready for Production
 
-After following the walkthrough step [Creating a Job Template](Job-Intro-03-Creating-a-Job-Template), you have
+After following the walkthrough step [Creating a Job Template](Job-Intro-03-Creating-a-Job-Template.md), you have
 a complete template to render in Blender and then encode a video. You've been reducing the resolution and quality
 of the resulting frames to make the development iterations quicker. To use the template in production you'll need
 to remove that testing code. You may also want to control which worker hosts in your cluster run the Steps of the Job.
@@ -28,9 +28,9 @@ blender --background "$SCENE" \
 ```
 
 or you need to modify the template so that it has both a testing and production mode. We'll do the latter in this guide to demonstrate
-using [Environments](2023-09-Template-Schemas#4-environment) in a Job Template. Think of Environments as encapsulating commands that you
+using [Environments](2023-09-Template-Schemas.md#4-environment) in a Job Template. Think of Environments as encapsulating commands that you
 can run to set up the context that Tasks run on in a session, then tear it down after no more Tasks will run (whether successfully or not).
-See the [How Jobs Are Run](How-Jobs-Are-Run#sessions) wiki topic for more details.
+See the [How Jobs Are Run](How-Jobs-Are-Run.md#sessions) wiki topic for more details.
 Since Environmnets run arbitrary commands of your choosing they can do anything that you would like, but one of their use cases is to
 set up or modify the environment where your Tasks will be running.
 

@@ -52,4 +52,4 @@ Note that if you prefer to programmatically generate Open Job Description templa
 then the [openjd-model](https://pypi.org/project/openjd-model/) Python package
 [supports that use case](https://github.com/OpenJobDescription/openjd-model-for-python?tab=readme-ov-file#converting-a-template-model-to-a-dictionary).
 
-Continue the walkthrough in [Starting with shell scripts](Job-Intro-02-Starting-With-Shell-Scripts).
+Continue the walkthrough in [Starting with shell scripts](Job-Intro-02-Starting-With-Shell-Scripts.md).

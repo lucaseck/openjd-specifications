@@ -9,7 +9,7 @@ and instantiating the template with those values.
 2. The Environment Template describes an Environment that is defined outside a Job. This can be used in render management
 systems to allow users to define Environments that are automatically applied to Job Templates that are submitted for rendering.
 
-Reading the broad overviews in [How Jobs Are Constructed](How-Jobs-Are-Constructed) and [How Jobs Are Run](How-Jobs-Are-Run)
+Reading the broad overviews in [How Jobs Are Constructed](How-Jobs-Are-Constructed.md) and [How Jobs Are Run](How-Jobs-Are-Run.md)
 might provide an easier introduction and broader context prior to reading the schema in entirety.
 
 Both Templates are expressed as UTF-8 documents in either

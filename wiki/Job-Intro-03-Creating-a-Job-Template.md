@@ -1,6 +1,6 @@
 # Creating a Job Template
 
-After following the walkthrough step [Starting with shell scripts](Job-Intro-02-Starting-With-Shell-Scripts),
+After following the walkthrough step [Starting with shell scripts](Job-Intro-02-Starting-With-Shell-Scripts.md),
 you have a set of shell scripts that accomplish the goals of your Job. The next step is to
 create a Job Template from those shell scripts so that you can run the Job locally using the Open Job
 Description CLI or on your job scheduler. The Job Template describes the shape of the Job, its runtime environment,
@@ -37,7 +37,7 @@ steps:
 
 The way to think about a Step in Open Job Description is that it is defining a command to run and the collection of inputs
 to run the command with. The command is defined in the `onRun` Action in the skeleton above. An Action in the 2023-09
-revision of the specification [is defined as](2023-09-Template-Schemas#5-action):
+revision of the specification [is defined as](2023-09-Template-Schemas.md#5-action):
 
 ```yaml
 command: <CommandString> # @fmtstring[host]
@@ -47,7 +47,7 @@ cancelation: <CancelationMethod> # @optional
 ```
 
 Notice that both the `command` and elements of the `args` array are annotated with `@fmtstring[host]` indicating that
-they are [Format Strings](How-Jobs-Are-Constructed#format-strings) that can include template substitutions from parameters
+they are [Format Strings](How-Jobs-Are-Constructed.md#format-strings) that can include template substitutions from parameters
 and other values. We're going to make use of this property to create our Job. For example, if the `onRun` action were defined as:
 
 ```yaml
@@ -63,9 +63,9 @@ is run once as given.
 Aside: This is a [map operation](https://en.wikipedia.org/wiki/Map_(higher-order_function)).
 
 You've created two shell scripts and can manually run them in sequence to approximate the results that we want. We can use
-Open Job Description's concept of [Embedded Files](2023-09-Template-Schemas#6-embeddedfile) to put those scripts directly into
+Open Job Description's concept of [Embedded Files](2023-09-Template-Schemas.md#6-embeddedfile) to put those scripts directly into
 a Job template. An embedded file lets you define the contents of a text file directly in a Job Template, then that text file
-will be created in the  [Session's temporary Working Directory](How-Jobs-Are-Run#sessions) when the Task is run.
+will be created in the  [Session's temporary Working Directory](How-Jobs-Are-Run.md#sessions) when the Task is run.
 
 The result is the start of your Job Template, which we save to file called `job.template.yaml`:
 
@@ -244,7 +244,7 @@ frame-001.png	frame-002.png
 
 Before we continue adding functionality to your Job we're going to have you add a timeout to the Task. The timeout
 property of an action limits how long that action is allowed to run. When the time limit is reached then the
-command that's running will be canceled using the action's defined [cancelation method](2023-09-Template-Schemas#53-cancelationmethod)
+command that's running will be canceled using the action's defined [cancelation method](2023-09-Template-Schemas.md#53-cancelationmethod)
 (by default, all processes in the Task's process tree are stopped). The timeout is a guard-rail to help prevent misbehaving actions
 from running forever; which can incur direct costs depending on your infrastructure (such as a cloud provider).
 
@@ -382,7 +382,7 @@ steps:
 ```
 
 Notice that the EncodeVideo Step differs from the BlenderRender Step in that it includes the definition of the Step's
-[dependencies](2023-09-Template-Schemas#32-stepdependency). This ensures that when you submit the Job to a compute cluster
+[dependencies](2023-09-Template-Schemas.md#32-stepdependency). This ensures that when you submit the Job to a compute cluster
 to run that the `BlenderRender` Step will run successfully to completion before the `EncodeVideo` Step is started.
 
 If the shell scripts in your actual Jobs are large then you may prefer to host them on a shared network fileshare
@@ -392,11 +392,11 @@ Jobs we remind you to ensure that no unauthorized users (including any running J
 ## 2. Parameterizing the template
 
 At this point you have a Job Template that has hard-coded values for the scene file and frame range. You can make this more
-general by adding [Job Parameters](2023-09-Template-Schemas#2-jobparameterdefinition) to the template to allow changing things
+general by adding [Job Parameters](2023-09-Template-Schemas.md#2-jobparameterdefinition) to the template to allow changing things
 like the scene file, frame range, and output locations when using the template to create a job.
 
 In the spirit of small incremental improvements, let's start by turning the scene file into a parameter. This is a filename, so
-it will be a [`PATH` type job parameter](2023-09-Template-Schemas#22-jobpathparameterdefinition). Modify the template to include
+it will be a [`PATH` type job parameter](2023-09-Template-Schemas.md#22-jobpathparameterdefinition). Modify the template to include
 the parameter definition and [reference it using the name](https://github.com/OpenJobDescription/openjd-specifications/wiki/How-Jobs-Are-Constructed#value-references)
 `Param.SceneFile` since it is a Job Parameter:
 
@@ -438,9 +438,9 @@ Tasks run: 1
 
 Repeating the same for the other values that we want to parameterize:
 
-1. The location of the `output_frames` directory and the output animation file's name are both [`PATH` type job parameters](2023-09-Template-Schemas#22-jobpathparameterdefinition);
-2. The starting and ending frame number for the animation are both [`INT` type job parameters](2023-09-Template-Schemas#23-jobintparameterdefinition); and
-3. The name of the job can be a [`STRING` type job parameter](2023-09-Template-Schemas#21-jobstringparameterdefinition).
+1. The location of the `output_frames` directory and the output animation file's name are both [`PATH` type job parameters](2023-09-Template-Schemas.md#22-jobpathparameterdefinition);
+2. The starting and ending frame number for the animation are both [`INT` type job parameters](2023-09-Template-Schemas.md#23-jobintparameterdefinition); and
+3. The name of the job can be a [`STRING` type job parameter](2023-09-Template-Schemas.md#21-jobstringparameterdefinition).
 
 The result will end up looking equivalent to:
 
@@ -591,7 +591,7 @@ For example, you may be developing your assets on a MacOS or Windows workstation
 the operating systems might be the same but shared network filesystems may be mounted in different locations; or the assets reside
 on the local hard drive on your workstation but will be automatically uploaded to an asset management system and materialized into
 a different location on the compute host when the Job is running. For these kinds of cases, Open Job Description provides a
-[path mapping](How-Jobs-Are-Run#path-mapping) mechanism to assist remapping the location of files directories from your workstation
+[path mapping](How-Jobs-Are-Run.md#path-mapping) mechanism to assist remapping the location of files directories from your workstation
 to their location on the compute host where the Job will run.
 
 The template that you've written so far is already set up to make use of the path mapping mechanism by using PATH type job parameters,
@@ -603,7 +603,7 @@ let's pretend that you're submitting from a different workstation where the file
 You'll run the job with parameter values that say that the files are located in `/mnt/shared/demo` and create a path mapping rule that
 tells Open Job Description to remap `/mnt/shared/demo` to the current working directory.
 
-The format that Open Job Description expects for path mapping rules is described in [the specification](How-Jobs-Are-Run#path-mapping).
+The format that Open Job Description expects for path mapping rules is described in [the specification](How-Jobs-Are-Run.md#path-mapping).
 To make it easy to reference in your `openjd run` commmand, create an environment variable that defines the path mapping rule that you
 need:
 
@@ -713,7 +713,7 @@ each image frame that we're seeing on an Apple M1 workstation. We can decrease t
 by spreading out the work over multiple hosts in a distributed compute cluster (and by using a GPU renderer). Next in this guide, you'll
 divide the work for the `BlenderRender` Step into multiple Tasks, each of which can be run independently.
 
-You define multiple Tasks for a Step by using the [`parameterSpace` property](2023-09-Template-Schemas#34-stepparameterspacedefinition) in
+You define multiple Tasks for a Step by using the [`parameterSpace` property](2023-09-Template-Schemas.md#34-stepparameterspacedefinition) in
 the Step's definition. This property defines the collection of inputs that the Step's `onRun` action is run with.
 In this case, you can create Tasks that render either a single frame or a group of frames.
 Let's go over both approaches.
@@ -764,7 +764,7 @@ blender --background "$SCENE" \
 ```
 
 After copying that into the Job Template, create the Step's parameter space to define
-a single [`INT` type Task parameter](2023-09-Template-Schemas#3411-inttaskparameterdefinition) called `Frame` with
+a single [`INT` type Task parameter](2023-09-Template-Schemas.md#3411-inttaskparameterdefinition) called `Frame` with
 a range of values from the `FrameStart` to the `FrameEnd`:
 
 ```yaml
@@ -979,7 +979,7 @@ with Open Job Description:
    [TASK_CHUNKING](https://github.com/OpenJobDescription/openjd-specifications/blob/mainline/rfcs/0001-task-chunking.md) extension,
    enable that extension and then use the `CHUNK[INT]` type in place of `INT` for the `Frame` Task parameter.
 2. Define Task parameters for the start and end of the range of frames to render in each Task and leverage a
-   [combination expression](2023-09-Template-Schemas#343-combinationexpr) to combine them; or
+   [combination expression](2023-09-Template-Schemas.md#343-combinationexpr) to combine them; or
 3. Define Task parameter as a `STRING` type and hardcode the range of frames that we want to render in each Task.
 
 We'll go through each of these options.
@@ -1656,4 +1656,4 @@ Mon Jul  8 10:48:30 2024	Frames(STRING) = 1..40
 ```
 
 
-Continue the walkthrough in [Ready for Production](Job-Intro-04-Ready-for-Production).
+Continue the walkthrough in [Ready for Production](Job-Intro-04-Ready-for-Production.md).

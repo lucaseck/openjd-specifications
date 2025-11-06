@@ -1,6 +1,6 @@
 # Starting with shell scripts
 
-Once you've completed your [Toolchain Setup](Job-Intro-01-Toolchain-Setup), a good starting point is to work out what
+Once you've completed your [Toolchain Setup](Job-Intro-01-Toolchain-Setup.md), a good starting point is to work out what
 commands you'll run in your job. We will do that by writing some shell scripts.
 
 An Open Job Description Job is, essentially, describing a set of command-line instructions to run, the inputs to those commands,
@@ -174,4 +174,4 @@ ffmpeg version 6.1.1-tessus  https://evermeet.cx/ffmpeg/  Copyright (c) 2000-202
 ...
 ```
 
-Continue the walkthrough in [Creating a Job Template](Job-Intro-03-Creating-a-Job-Template).
+Continue the walkthrough in [Creating a Job Template](Job-Intro-03-Creating-a-Job-Template.md).

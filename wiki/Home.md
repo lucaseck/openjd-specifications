@@ -34,8 +34,8 @@ on the second talk.
 
 ## Getting Started
 
-The fastest way to understand the bones of Open Job Description is to understand both [How Jobs Are Constructed](How-Jobs-Are-Constructed)
-and [How Jobs Are Run](How-Jobs-Are-Run), followed by the [Introduction to Creating a Job](Introduction-to-Creating-a-Job) and browsing the provided
+The fastest way to understand the bones of Open Job Description is to understand both [How Jobs Are Constructed](How-Jobs-Are-Constructed.md)
+and [How Jobs Are Run](How-Jobs-Are-Run.md), followed by the [Introduction to Creating a Job](Introduction-to-Creating-a-Job.md) and browsing the provided
 [sample templates](https://github.com/OpenJobDescription/openjd-specifications/tree/mainline/samples) in this GitHub
 repository.
 
